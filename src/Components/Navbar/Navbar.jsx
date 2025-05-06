@@ -1,5 +1,4 @@
-import React from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 import './navbar.css';
 
 const Navbar = () => {
@@ -23,7 +22,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-[#2F2F2F] text-white shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -50,7 +49,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Hood Happenings</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal px-1 navLink">{links}</ul>

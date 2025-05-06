@@ -5,6 +5,7 @@ import About from '../Pages/About/About';
 import Profile from '../Pages/Profile/Profile';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Registerr/Register';
+import CardDetails from '../Components/CardDetails/CardDetails';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+        loader: () => fetch('/eventData.json'),
       },
       {
         path: '/profile',
@@ -30,6 +32,11 @@ const router = createBrowserRouter([
       {
         path: '/register',
         Component: Register,
+      },
+      {
+        path: '/cardDetails/:id',
+        Component: CardDetails,
+        loader: () => fetch('/eventData.json'),
       },
     ],
   },
