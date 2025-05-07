@@ -1,23 +1,51 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Register = () => {
-  const { userRegister } = use(AuthContext);
+  const [passwordError, setPasswordError] = useState('');
+  const { userRegister, setUser, updateUser } = use(AuthContext);
   const navigate = useNavigate();
   //
   const handelRegister = e => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
+
     const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photoUrl, email, password);
-    userRegister(email, password).then(result => {
-      console.log(result);
-      navigate('/');
-    });
+    if (password.length < 6) {
+      setPasswordError('password should be more then 6 character');
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      setPasswordError('Must have a Lowercase letter in the password  ');
+      return;
+    }
+    if (!/[A-A]/.test(password)) {
+      setPasswordError('Must have an Uppercase letter in the password ');
+      return;
+    }
+
+    userRegister(email, password)
+      .then(result => {
+        const user = result.user;
+        updateUser({ displayName: name, photoURL: photoUrl })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photoUrl });
+            navigate('/');
+            toast.success('Registration Successful');
+          })
+          .catch(error => {
+            console.log(error);
+            setUser(user);
+          });
+      })
+      .catch(error => {
+        toast(error.message);
+      });
   };
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -33,6 +61,7 @@ const Register = () => {
               className="input"
               placeholder="Your Name"
             />
+
             {/* Photo url */}
             <label className="label">Photo URL</label>
             <input
@@ -58,6 +87,7 @@ const Register = () => {
               className="input"
               placeholder="Password"
             />
+            {passwordError && <p className="text-red-600">{passwordError}</p>}
             {/* google login */}
             <button className="btn bg-white text-black border-[#e5e5e5]">
               <svg

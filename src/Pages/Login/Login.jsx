@@ -1,10 +1,14 @@
-import React, { use } from 'react';
-import { Link, useNavigate } from 'react-router';
+import React, { use, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Login = () => {
+  const [error, setError] = useState('');
   const { userLogin } = use(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
   //
 
   const handelLogin = e => {
@@ -15,11 +19,13 @@ const Login = () => {
     console.log(email, password);
     userLogin(email, password)
       .then(result => {
-        console.log(result);
-        navigate('/');
+        navigate(`${location.state ? location.state : '/'}`);
+        toast.success('login Successful');
       })
       .catch(error => {
-        console.log(error);
+        const errorCode = error.code;
+        // const errorMessage = error.message;
+        setError(errorCode);
       });
   };
 
@@ -35,6 +41,7 @@ const Login = () => {
               name="email"
               className="input"
               placeholder="Email"
+              required
             />
             <label className="label">Password</label>
             <input
@@ -42,7 +49,9 @@ const Login = () => {
               name="password"
               className="input"
               placeholder="Password"
+              required
             />
+            {error && <p className="text-red-600">{error}</p>}
             {/* google login */}
             <button className="btn bg-white text-black border-[#e5e5e5]">
               <svg
@@ -77,6 +86,7 @@ const Login = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
+
             <button className="btn btn-neutral mt-4">Login</button>
           </fieldset>
           <p>

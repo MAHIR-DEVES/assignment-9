@@ -4,7 +4,7 @@ import { useLoaderData, useParams } from 'react-router';
 const CardDetails = () => {
   const { id } = useParams();
   const data = useLoaderData();
-  console.log(data);
+
   const [card, setCard] = useState({});
   // console.log(Object.keys(card).join(','));
   const { thumbnail, name, category, date, location, entry_fee, description } =
