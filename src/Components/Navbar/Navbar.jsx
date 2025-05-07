@@ -5,24 +5,26 @@ import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { user, userLogout } = use(AuthContext);
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/profile">Profile</NavLink>
-      </li>
-      <li>
-        {' '}
         <NavLink to="/about">about</NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/profile">Profile</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
-
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const { user, userLogout } = use(AuthContext);
 
   const handelLogout = () => {
     userLogout()

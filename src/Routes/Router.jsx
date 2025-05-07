@@ -7,6 +7,7 @@ import Login from '../Pages/Login/Login';
 import Register from '../Pages/Registerr/Register';
 import CardDetails from '../Components/CardDetails/CardDetails';
 import PrivateRoute from '../Provider/AuthProvider/PrivateRoute';
+import Loading from '../Components/Loading/Loading';
 
 const router = createBrowserRouter([
   {
@@ -17,10 +18,15 @@ const router = createBrowserRouter([
         index: true,
         Component: Home,
         loader: () => fetch('/eventData.json'),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: '/profile',
-        Component: Profile,
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/about',
@@ -42,6 +48,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () => fetch('/eventData.json'),
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },

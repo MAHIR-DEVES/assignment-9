@@ -60,6 +60,7 @@ const Register = () => {
               name="name"
               className="input"
               placeholder="Your Name"
+              required
             />
 
             {/* Photo url */}
@@ -69,6 +70,7 @@ const Register = () => {
               name="photoUrl"
               className="input"
               placeholder="Photo URL"
+              required
             />
             {/* email */}
             <label className="label">Email</label>
@@ -77,6 +79,7 @@ const Register = () => {
               name="email"
               className="input"
               placeholder="Email"
+              required
             />
 
             {/* password */}
@@ -86,6 +89,7 @@ const Register = () => {
               name="password"
               className="input"
               placeholder="Password"
+              required
             />
             {passwordError && <p className="text-red-600">{passwordError}</p>}
             {/* google login */}
