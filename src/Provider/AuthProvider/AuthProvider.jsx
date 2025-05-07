@@ -2,8 +2,11 @@ import { createContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from 'firebase/auth';
@@ -29,7 +32,22 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   //
+  const provider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
+  //
   const updateUser = updateData => {
+    return updateProfile(auth.currentUser, updateData);
+  };
+  //
+  const resetPassword = email => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+  //
+  const updateUser2 = updateData => {
     return updateProfile(auth.currentUser, updateData);
   };
   //
@@ -57,6 +75,9 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     updateUser,
+    googleLogin,
+    resetPassword,
+    updateUser2,
   };
 
   return (

@@ -8,6 +8,7 @@ import Register from '../Pages/Registerr/Register';
 import CardDetails from '../Components/CardDetails/CardDetails';
 import PrivateRoute from '../Provider/AuthProvider/PrivateRoute';
 import Loading from '../Components/Loading/Loading';
+import ResatPasswordPage from '../Pages/ResatPasswordPage/ResatPasswordPage';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         Component: Login,
+      },
+      {
+        path: '/ResatPasswordPage',
+        Component: ResatPasswordPage,
       },
       {
         path: '/register',

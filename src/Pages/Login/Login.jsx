@@ -2,10 +2,12 @@ import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const Login = () => {
+  TabTitle('Hood Happenings | login');
   const [error, setError] = useState('');
-  const { userLogin } = use(AuthContext);
+  const { userLogin, googleLogin, setUser } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,7 +30,18 @@ const Login = () => {
         setError(errorCode);
       });
   };
-
+  const handelGoogleLogin = () => {
+    googleLogin()
+      .then(result => {
+        const user = result.user;
+        setUser(user);
+        navigate('/');
+        toast.success('Google Login Successful');
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto ">
@@ -53,7 +66,10 @@ const Login = () => {
             />
             {error && <p className="text-red-600">{error}</p>}
             {/* google login */}
-            <button className="btn bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handelGoogleLogin}
+              className="btn bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"
@@ -83,7 +99,7 @@ const Login = () => {
               </svg>
               Login with Google
             </button>
-            <div>
+            <div onClick={() => navigate('/ResatPasswordPage')}>
               <a className="link link-hover">Forgot password?</a>
             </div>
 

@@ -2,10 +2,12 @@ import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const Register = () => {
+  TabTitle('Hood Happenings | Register');
   const [passwordError, setPasswordError] = useState('');
-  const { userRegister, setUser, updateUser } = use(AuthContext);
+  const { userRegister, setUser, updateUser, googleLogin } = use(AuthContext);
   const navigate = useNavigate();
   //
   const handelRegister = e => {
@@ -45,6 +47,19 @@ const Register = () => {
       })
       .catch(error => {
         toast(error.message);
+      });
+  };
+
+  const handelGoogleLogin = () => {
+    googleLogin()
+      .then(result => {
+        const user = result.user;
+        setUser(user);
+        navigate('/');
+        toast.success('Google Login Successful');
+      })
+      .catch(error => {
+        toast.error(error.message);
       });
   };
   return (
@@ -93,7 +108,10 @@ const Register = () => {
             />
             {passwordError && <p className="text-red-600">{passwordError}</p>}
             {/* google login */}
-            <button className="btn bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handelGoogleLogin}
+              className="btn bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"
