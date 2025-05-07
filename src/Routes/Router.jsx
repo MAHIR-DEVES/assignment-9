@@ -9,6 +9,8 @@ import CardDetails from '../Components/CardDetails/CardDetails';
 import PrivateRoute from '../Provider/AuthProvider/PrivateRoute';
 import Loading from '../Components/Loading/Loading';
 import ResatPasswordPage from '../Pages/ResatPasswordPage/ResatPasswordPage';
+import Contact from '../Pages/Contacs/Contact';
+import Blogs from '../Pages/Blogs/Blogs';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
       {
         path: '/register',
         Component: Register,
+      },
+      {
+        path: '/blogs',
+        Component: Blogs,
+      },
+      {
+        path: '/contact',
+        Component: Contact,
       },
       {
         path: '/cardDetails/:id',

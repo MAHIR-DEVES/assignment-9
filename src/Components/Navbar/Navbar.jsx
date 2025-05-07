@@ -16,6 +16,12 @@ const Navbar = () => {
       <li>
         <NavLink to="/about">About</NavLink>
       </li>
+      <li>
+        <NavLink to="/blogs">Blog</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact</NavLink>
+      </li>
       {user && (
         <>
           <li>
@@ -37,11 +43,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-[#2F2F2F] text-white shadow-sm py-6">
-      <div className="flex justify-between items-center w-11/12 mx-auto">
-        <div className="">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+    <div className="navbar bg-[#2F2F2F] text-white shadow-sm md:py-6">
+      <div className="flex justify-between items-center md:w-11/12 md:mx-auto">
+        <div className="flex items-center ">
+          <div className="dropdown mr-2">
+            <div tabIndex={0} role="button" className=" lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -75,7 +81,36 @@ const Navbar = () => {
         <div className=" hidden lg:flex">
           <ul className="menu-horizontal px-1 navLink">{links}</ul>
         </div>
-        <div className="flex">
+        <div className="flex lg:hidden w-36 ml-14">
+          <div className=" flex justify-center items-center  mr-3">
+            <img
+              className="w-10 rounded-full mr-1"
+              src={`${user ? user.photoURL : ''}`}
+              alt=""
+            />
+            <h2 className="mr-5">{user && user.displayName}</h2>
+          </div>
+          <div className="flex justify-center items-center">
+            {user ? (
+              <button
+                onClick={handelLogout}
+                className="btn btn-xs bg-gray-400 text-white"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={() => navigate('/login')}
+                className={`btn  btn-xs${
+                  pathname === '/login' ? 'bg-red-400 text-white' : ''
+                }`}
+              >
+                Login
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="flex hidden lg:flex">
           <div className=" flex justify-center items-center gap-4 mr-5">
             <img
               className="w-12 rounded-full"

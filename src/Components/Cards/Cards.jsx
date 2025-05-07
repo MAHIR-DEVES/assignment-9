@@ -13,7 +13,11 @@ const Cards = ({ card }) => {
   return (
     <div className="card bg-base-100 shadow-xl mx-auto ">
       <figure>
-        <img className="md:h-[380px]" src={thumbnail} alt="Shoes" />
+        <img
+          className="md:h-[280px] lg:h-[380px]"
+          src={thumbnail}
+          alt="Shoes"
+        />
       </figure>
       <div
         className="card-body 
