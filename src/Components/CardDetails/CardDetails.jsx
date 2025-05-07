@@ -20,7 +20,7 @@ const CardDetails = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-gray-200 w-7xl flex py-20  justify-center items-center">
+      <div className="bg-gray-200 w-7xl flex py-10 md:py-20  justify-center items-center">
         <div className="bg-white p-4 rounded-xl">
           <div className="flex space-x-4 bg-white p-2"></div>
           <img className="w-96 mx-auto" src={thumbnail} alt="" />

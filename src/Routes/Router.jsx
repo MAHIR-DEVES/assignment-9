@@ -11,11 +11,13 @@ import Loading from '../Components/Loading/Loading';
 import ResatPasswordPage from '../Pages/ResatPasswordPage/ResatPasswordPage';
 import Contact from '../Pages/Contacs/Contact';
 import Blogs from '../Pages/Blogs/Blogs';
+import ErrorPage from '../Pages/Error/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     Component: Root,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -65,6 +67,7 @@ const router = createBrowserRouter([
         loader: () => fetch('/eventData.json'),
         hydrateFallbackElement: <Loading></Loading>,
       },
+      {},
     ],
   },
 ]);
