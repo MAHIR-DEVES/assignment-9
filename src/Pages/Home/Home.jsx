@@ -10,10 +10,8 @@ const Home = () => {
 
   return (
     <div className="bg-gray-50">
-      {/* Hero Slider */}
       <Slider />
 
-      {/* Events Section */}
       <section className="py-12 lg:px-4 sm:px-6  lg:w-10/12 mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full mb-4">
