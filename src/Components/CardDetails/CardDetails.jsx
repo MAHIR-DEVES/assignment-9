@@ -38,7 +38,6 @@ const CardDetails = () => {
             </div>
           </div>
 
-          {/* Event Details */}
           <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8">
             <div>
               <div className="space-y-4">
@@ -113,7 +112,6 @@ const CardDetails = () => {
               </div>
             </div>
 
-            {/* Booking Form */}
             <div className="bg-gray-50 p-6 rounded-lg">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Book Your Spot

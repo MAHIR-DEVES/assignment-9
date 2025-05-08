@@ -33,7 +33,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 md:px-6 pb-12 flex flex-col justify-center">
-      {/* Contact Info Cards Section */}
       <div className=" grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-gray-700 py-20">
         <div className="flex flex-col items-center space-y-2">
           <div className="text-orange-500 text-4xl">
@@ -41,7 +40,6 @@ const ContactPage = () => {
               {' '}
               <FaHome size={50}></FaHome>
             </i>{' '}
-            {/* Replace with a proper icon if using a library like Lucide */}
           </div>
           <h3 className="text-lg font-bold uppercase">Visit Us</h3>
           <p>Lorem ipsum dolor sit amet, consectetur elit.</p>

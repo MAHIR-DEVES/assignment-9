@@ -7,7 +7,6 @@ const ErrorPage = () => {
   const navigate = useNavigate();
 
   if (isRouteErrorResponse(error)) {
-    // Error from loader/action like 404 or 401
     return (
       <div className="min-h-screen flex  justify-center items-center text-center">
         <div className="bg-white px-50 py-15">
@@ -26,12 +25,14 @@ const ErrorPage = () => {
     );
   }
 
-  // General error (e.g. JS runtime or network)
   return (
     <div className="min-h-screen flex justify-center items-center">
       <h1>Oops!</h1>
       <p>Something went wrong.</p>
       <pre>{error.message || JSON.stringify(error)}</pre>
+      <button onClick={() => navigate('/')} className="btn w-full mt-10">
+        Back To Home <FaHome size={20}></FaHome>
+      </button>
     </div>
   );
 };

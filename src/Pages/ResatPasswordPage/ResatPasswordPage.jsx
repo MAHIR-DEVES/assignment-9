@@ -8,7 +8,7 @@ import { useSearchParams } from 'react-router';
 
 const ResetPasswordPage = () => {
   TabTitle('Hood Happenings | Reset Password');
-  const { resetPassword, user } = React.useContext(AuthContext);
+  const { resetPassword } = React.useContext(AuthContext);
   const emailRef = useRef();
   const [searchParams] = useSearchParams();
   const [email, setEmail] = useState('');
