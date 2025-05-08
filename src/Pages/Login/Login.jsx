@@ -6,6 +6,7 @@ import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   TabTitle('Hood Happenings | Login');
@@ -24,8 +25,12 @@ const Login = () => {
 
     userLogin(email, password)
       .then(() => {
-        navigate(from, { replace: true });
-        toast.success('Login successful!');
+        navigate(`${location.state ? location.state : '/'}`);
+        Swal.fire({
+          title: 'Login successful!',
+          icon: 'success',
+          draggable: true,
+        });
       })
       .catch(error => {
         setError(error.code);
@@ -37,8 +42,12 @@ const Login = () => {
     googleLogin()
       .then(result => {
         setUser(result.user);
-        navigate(from, { replace: true });
-        toast.success('Google login successful!');
+        navigate(`${location.state ? location.state : '/'}`);
+        Swal.fire({
+          title: 'Google login successful!',
+          icon: 'success',
+          draggable: true,
+        });
       })
       .catch(error => {
         toast.error(error.message);

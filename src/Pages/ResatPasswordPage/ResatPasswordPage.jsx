@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FiMail } from 'react-icons/fi';
 
 const ResetPasswordPage = () => {
-  const { resetPassword } = React.useContext(AuthContext);
+  const { resetPassword, user } = React.useContext(AuthContext);
   const emailRef = useRef();
 
   const handleForgotPassword = e => {
@@ -24,6 +24,7 @@ const ResetPasswordPage = () => {
       .catch(error => {
         toast.error(error.message);
       });
+    window.open('https://mail.google.com', '_blank');
   };
 
   return (
@@ -58,6 +59,7 @@ const ResetPasswordPage = () => {
                   id="email"
                   name="email"
                   type="email"
+                  defaultValue={user?.email}
                   required
                   className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                   placeholder="your@email.com"

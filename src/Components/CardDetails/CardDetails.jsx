@@ -19,7 +19,7 @@ const CardDetails = () => {
   }, [data, id]);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 lg:px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-12 lg:px-4 sm:px-6 ">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           {/* Event Image */}
@@ -142,14 +142,14 @@ const CardDetails = () => {
                 <button
                   onClick={() => {
                     Swal.fire({
-                      title: 'Your Booking Successful!',
+                      title: 'Your Booking Successful !',
                       icon: 'success',
                       draggable: true,
                     });
                   }}
                   className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
                 >
-                  Book Now
+                  Reserve Seat
                 </button>
               </div>
             </div>

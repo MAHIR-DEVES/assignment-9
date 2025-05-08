@@ -14,13 +14,13 @@ const Home = () => {
       <Slider />
 
       {/* Events Section */}
-      <section className="py-12 lg:px-4 sm:px-6 lg:px-8 lg:w-10/12 mx-auto">
+      <section className="py-12 lg:px-4 sm:px-6  lg:w-10/12 mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded-full mb-4">
             Restaurants Events
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Discover Top Events
+            Upcoming Events Section
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Explore the most exciting restaurant events in your area
