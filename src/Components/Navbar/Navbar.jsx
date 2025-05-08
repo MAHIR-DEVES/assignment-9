@@ -81,7 +81,7 @@ const Navbar = () => {
           <ul className="menu-horizontal px-1 navLink">{links}</ul>
         </div>
         <div className="flex  justify-between lg:hidden w-36 ">
-          <div className="flex justify-center items-center mr-2">
+          <div className="flex justify-center items-center ">
             {user && (
               <>
                 <img
@@ -102,14 +102,14 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={handelLogout}
-                className="btn btn-sm bg-indigo-600 text-white"
+                className="bg-indigo-600 font-medium py-1 px-3 rounded-lg transition duration-200 btn-sm text-white"
               >
                 Logout
               </button>
             ) : (
               <button
                 onClick={() => navigate('/login')}
-                className={`btn btn-sm ${
+                className={`bg-indigo-600 font-medium py-2 px-4 rounded-lg transition duration-200btn-sm ${
                   pathname === '/login' ? 'bg-indigo-600 text-white' : ''
                 }`}
               >
