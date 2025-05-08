@@ -12,6 +12,7 @@ import ResatPasswordPage from '../Pages/ResatPasswordPage/ResatPasswordPage';
 import Contact from '../Pages/Contacs/Contact';
 import Blogs from '../Pages/Blogs/Blogs';
 import ErrorPage from '../Pages/Error/ErrorPage';
+import ContactPage from '../Pages/Contacs/Contact';
 
 const router = createBrowserRouter([
   {
@@ -51,11 +52,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/blogs',
-        Component: Blogs,
+        element: (
+          <PrivateRoute>
+            <Blogs></Blogs>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/contact',
-        Component: Contact,
+        element: (
+          <PrivateRoute>
+            <ContactPage></ContactPage>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/cardDetails/:id',

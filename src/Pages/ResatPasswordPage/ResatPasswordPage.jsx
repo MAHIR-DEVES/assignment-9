@@ -1,62 +1,92 @@
-import React, { use } from 'react';
+import React, { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import { motion } from 'framer-motion';
+import { FiMail } from 'react-icons/fi';
 
-const ResatPasswordPage = () => {
-  const { resetPassword } = use(AuthContext);
+const ResetPasswordPage = () => {
+  const { resetPassword } = React.useContext(AuthContext);
+  const emailRef = useRef();
+
   const handleForgotPassword = e => {
     e.preventDefault();
-    const email = document.querySelector('input[name="email"]').value;
+    const email = emailRef.current.value;
 
     if (!email) {
-      toast.error('Please enter your email first');
+      toast.error('Please enter your email address');
       return;
     }
 
     resetPassword(email)
       .then(() => {
-        toast.success('Password reset email sent!');
+        toast.success('Password reset email sent! Check your inbox');
       })
       .catch(error => {
         toast.error(error.message);
       });
   };
+
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div className="">
-        <div className="bg-stone-300 p-10 font-semibold space-y-2">
-          <h2 className="text-2xl">Resat Your Password</h2>
-          <span className="lg:hidden">
-            <label htmlFor="">Inter Your Email</label>
-            <br />
-            <input
-              name="email"
-              className="bg-stone-100 px-5 py-2   "
-              type="email"
-              required
-              placeholder="Your Email"
-            />
-          </span>
-          <span className="flex items-center gap-2 hidden lg:flex bg-white mb-2 rounded-xl">
-            <p className="px-3">Change Password</p>
-            <input
-              name="email"
-              className="bg-stone-100 px-5 py-2 rounded-xl ml-1 "
-              type="email"
-              required
-              placeholder="Your Email"
-            />
-          </span>
-          <button
-            onClick={handleForgotPassword}
-            className="btn btn-outline w-full mt-4"
-          >
-            Resat Password
-          </button>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden"
+      >
+        <div className="p-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">
+              Reset Password
+            </h1>
+            <p className="text-gray-600">
+              Enter your email to receive a password reset link
+            </p>
+          </div>
+
+          <form onSubmit={handleForgotPassword} className="space-y-6">
+            <div className="relative">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Email Address
+              </label>
+              <div className="relative">
+                <input
+                  ref={emailRef}
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  placeholder="your@email.com"
+                />
+                <FiMail className="absolute left-3 top-3.5 text-gray-400" />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200"
+            >
+              Send Reset Link
+            </button>
+          </form>
+
+          <div className="mt-6 text-center text-sm text-gray-600">
+            Remember your password?{' '}
+            <a
+              href="/login"
+              className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline"
+            >
+              Sign in
+            </a>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
 
-export default ResatPasswordPage;
+export default ResetPasswordPage;

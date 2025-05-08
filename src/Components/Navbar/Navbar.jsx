@@ -4,6 +4,7 @@ import { use } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -20,13 +21,14 @@ const Navbar = () => {
       <li>
         <NavLink to="/blogs">Blog</NavLink>
       </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
-      </li>
+
       {user && (
         <>
           <li>
             <NavLink to="/profile">Profile</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
         </>
       )}
@@ -54,12 +56,6 @@ const Navbar = () => {
               className=" lg:hidden cursor-pointer "
             >
               <GiHamburgerMenu size={29} />{' '}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{' '}
             </div>
             <ul
               tabIndex={0}
@@ -78,28 +74,38 @@ const Navbar = () => {
         <div className=" hidden lg:flex">
           <ul className="menu-horizontal px-1 navLink">{links}</ul>
         </div>
-        <div className="flex lg:hidden w-36 ml-14">
-          <div className=" flex justify-center items-center  mr-3">
-            <img
-              className="w-10 rounded-full mr-1"
-              src={`${user ? user.photoURL : ''}`}
-              alt=""
-            />
+        <div className="flex lg:hidden w-36 ml-10">
+          <div className="flex justify-center items-center mr-2">
+            {user && (
+              <>
+                <img
+                  className="w-10 rounded-full mr-1"
+                  src={user.photoURL || ''}
+                  alt="Profile"
+                  data-tooltip-id="mobile-profile-tooltip"
+                  data-tooltip-content={user.email}
+                />
+                <Tooltip
+                  id="mobile-profile-tooltip"
+                  className="z-50 !bg-black !text-white !text-sm !px-3 !py-1 !rounded"
+                />
+              </>
+            )}
             <h2 className="mr-5 font-bold">{user && user.displayName}</h2>
           </div>
           <div className="flex justify-center items-center">
             {user ? (
               <button
                 onClick={handelLogout}
-                className="btn btn-sm bg-gray-400 text-white"
+                className="btn btn-sm bg-indigo-600 text-white"
               >
                 Logout
               </button>
             ) : (
               <button
                 onClick={() => navigate('/login')}
-                className={`btn  btn-sm ${
-                  pathname === '/login' ? 'bg-red-400 text-white' : ''
+                className={`btn btn-sm ${
+                  pathname === '/login' ? 'bg-indigo-600 text-white' : ''
                 }`}
               >
                 Login
@@ -108,27 +114,37 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex hidden lg:flex">
-          <div className=" flex justify-center items-center gap-4 mr-5">
-            <img
-              className="w-12 rounded-full"
-              src={`${user ? user.photoURL : ''}`}
-              alt=""
-            />
+          <div className="flex justify-center items-center gap-4 mr-5">
+            {user && (
+              <>
+                <img
+                  className="w-12 rounded-full"
+                  src={user.photoURL || ''}
+                  alt="Profile"
+                  data-tooltip-id="desktop-profile-tooltip"
+                  data-tooltip-content={user.email}
+                />
+                <Tooltip
+                  id="desktop-profile-tooltip"
+                  className="z-50 !bg-black !text-white !text-sm !px-3 !py-1 !rounded"
+                />
+              </>
+            )}
             <h2>{user && user.displayName}</h2>
           </div>
           <div>
             {user ? (
               <button
                 onClick={handelLogout}
-                className="btn bg-gray-400 text-white"
+                className=" bg-indigo-600 font-medium py-2 px-4 rounded-lg transition "
               >
                 Logout
               </button>
             ) : (
               <button
                 onClick={() => navigate('/login')}
-                className={`btn ${
-                  pathname === '/login' ? 'bg-red-400 text-white' : ''
+                className={`bg-indigo-600 font-medium py-2 px-4 rounded-lg transition duration-200 ${
+                  pathname === '/login' ? 'hover:bg-indigo-700 text-white' : ''
                 }`}
               >
                 Login
