@@ -11,6 +11,7 @@ profile and I am creating a doggling system with the I button and I am doing
 another one with the password and hide it. That is the forget password. If the
 user forgets the password, he can forget the password. This is the over all
 project and projector. I have taken the different types of designs that need to
-be taken from different websites.
+be taken from different websites. And I have hidden the Firebase configurations
+through the ENV file which will not be visible in Git.
 
 package : 1| Swiper slider 1| react icon 2| toolTip 3| motion
