@@ -16,6 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
+  const [email, setEmail] = useState('');
 
   const handleLogin = e => {
     e.preventDefault();
@@ -85,6 +86,7 @@ const Login = () => {
               <input
                 id="email"
                 name="email"
+                onChange={e => setEmail(e.target.value)}
                 type="email"
                 autoComplete="email"
                 required
@@ -125,7 +127,9 @@ const Login = () => {
             )}
 
             <div className="flex items-center justify-between">
-              <Link to="/ResatPasswordPage">
+              <Link
+                to={`/ResatPasswordPage?email=${encodeURIComponent(email)}`}
+              >
                 <p className="text-sm text-indigo-600 hover:text-indigo-800 hover:underline">
                   Forgot password?
                 </p>

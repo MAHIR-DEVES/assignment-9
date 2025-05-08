@@ -1,14 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { motion } from 'framer-motion';
 import { FiMail } from 'react-icons/fi';
 import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
+import { useSearchParams } from 'react-router';
 
 const ResetPasswordPage = () => {
   TabTitle('Hood Happenings | Reset Password');
   const { resetPassword, user } = React.useContext(AuthContext);
   const emailRef = useRef();
+  const [searchParams] = useSearchParams();
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const emailFromQuery = searchParams.get('email');
+    if (emailFromQuery) {
+      setEmail(emailFromQuery);
+    }
+  }, [searchParams]);
 
   const handleForgotPassword = e => {
     e.preventDefault();
@@ -58,10 +68,11 @@ const ResetPasswordPage = () => {
               <div className="relative">
                 <input
                   ref={emailRef}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   id="email"
                   name="email"
                   type="email"
-                  defaultValue={user?.email}
                   required
                   className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                   placeholder="your@email.com"
