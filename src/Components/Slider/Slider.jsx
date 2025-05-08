@@ -28,23 +28,72 @@ const Slider = () => {
         modules={[Pagination, Navigation, HashNavigation]}
         className="mySwiper"
       >
-        <SwiperSlide data-hash="slide1">
-          <img src={slide2} alt="" />
+        <SwiperSlide data-hash="slide0" className="relative">
+          <div className="relative h-full w-full">
+            <img
+              className="w-full h-full object-cover"
+              src="https://i.ibb.co.com/h1s7yW1H/15.jpg"
+              alt="Slide content"
+            />
+            <div className="absolute inset-0 bg-black/40"></div>{' '}
+          </div>
+
+          <div className="absolute inset-0 flex items-center justify-center z-10 text-white p-8">
+            <h2
+              style={{ fontFamily: 'cursive' }}
+              className="text-4xl font-bold f"
+            >
+              Event Management{' '}
+            </h2>
+          </div>
         </SwiperSlide>
-        <SwiperSlide data-hash="slide2">
-          <img src={slide1} alt="" />
+        <SwiperSlide data-hash="slide1" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide2} alt="" className="w-full h-full object-cover" />
+
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
         </SwiperSlide>
-        <SwiperSlide data-hash="slide3">
-          <img src={slide3} alt="" />
+        <SwiperSlide data-hash="slide1" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide1} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
         </SwiperSlide>
-        <SwiperSlide data-hash="slide1">
-          <img src={slide1} alt="" />
+
+        <SwiperSlide data-hash="slide2" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide2} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
         </SwiperSlide>
-        <SwiperSlide data-hash="slide2">
-          <img src={slide2} alt="" />
+
+        <SwiperSlide data-hash="slide3" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide3} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
         </SwiperSlide>
-        <SwiperSlide data-hash="slide3">
-          <img src={slide3} alt="" />
+
+        <SwiperSlide data-hash="slide4" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide1} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide data-hash="slide5" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide2} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide data-hash="slide6" className="relative">
+          <div className="relative w-full h-full">
+            <img src={slide3} alt="" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>

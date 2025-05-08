@@ -3,8 +3,10 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import { motion } from 'framer-motion';
 import { FiMail } from 'react-icons/fi';
+import { TabTitle } from '../../Layouts/Utils/DynamicTitle/DynamicTitle';
 
 const ResetPasswordPage = () => {
+  TabTitle('Hood Happenings | Reset Password');
   const { resetPassword, user } = React.useContext(AuthContext);
   const emailRef = useRef();
 
